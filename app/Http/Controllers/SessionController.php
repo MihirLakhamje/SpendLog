@@ -28,12 +28,12 @@ class SessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('users.home')->with('success', 'You have successfully logged in.');
+        return redirect('/home')->with('success', 'You have successfully logged in.');
     }
 
     public function destroy()
     {
         Auth::logout();
-        return redirect()->route('auth.login');
+        return redirect('/login')->with('success', 'You have successfully logged out.');
     }
 }
