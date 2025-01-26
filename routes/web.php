@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,3 +16,5 @@ Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store'])->name('login_store');
 
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
+
+Route::get('/home', [UserController::class, 'home'])->name('users.home')->middleware('auth');
