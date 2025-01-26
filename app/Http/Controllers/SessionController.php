@@ -20,9 +20,9 @@ class SessionController extends Controller
             'password' => ['required', 'min:6'],
         ]);
 
-        if(Auth::attempt($request->only('email', 'password'))) {
+        if(!Auth::attempt($request->only('email', 'password'))) {
             throw ValidationException::withMessages([
-                'email' => 'Invalid email or password'
+                'email' => 'Invalid credentials.',
             ]);
         }
 

@@ -15,23 +15,25 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'confirmed'],
+            'password' => ['required', 'min:6', 'confirmed'],
         ]);
 
-        if(!Auth::attempt($credentials)) {
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ]);
-        }
-
-        $user = User::create($credentials);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
 
         Auth::login($user);
 
-        return redirect()->route('users.home')->with('success', 'You have successfully registered.');
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+
+        return redirect('/home')->with('success', 'You have successfully registered.');
         
     }
 }
