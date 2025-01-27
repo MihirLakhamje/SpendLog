@@ -10,6 +10,9 @@ class RegisterController extends Controller
 {
     public function create()
     {
+        if(Auth::check()){
+            return redirect()->route('users.home');
+        }
         return view('auth.register');
     }
 
