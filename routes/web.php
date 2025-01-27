@@ -4,9 +4,13 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    if(Auth::check()){
+        return redirect()->route('users.home');
+    }
     return view('welcome');
 });
 
