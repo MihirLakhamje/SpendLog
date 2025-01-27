@@ -1,6 +1,6 @@
 <x-layout>
 
-  <form class="max-w-sm mx-auto mt-16" action="/login" method="POST">
+  <form class="max-w-sm mx-auto mt-16" action="{{ route('login.store') }}" method="POST">
     <h1 class="text-2xl font-bold mb-5">Welcome, back!</h1>
     @csrf
     <div class="mb-5">

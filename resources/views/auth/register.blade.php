@@ -1,5 +1,5 @@
 <x-layout>
-  <form class="max-w-sm mx-auto mt-16" action="/register" method="POST">
+  <form class="max-w-sm mx-auto mt-16" action="{{ route('register.store') }}" method="POST">
   <h1 class="text-2xl font-bold mb-5">Create an account</h1>
     @csrf
     <div class="mb-5">
