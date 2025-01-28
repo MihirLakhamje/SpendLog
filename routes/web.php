@@ -28,4 +28,7 @@ Route::get('/google/callback', [SocialiteController::class, 'googleCallback'])->
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
     Route::get('/home', [UserController::class, 'home'])->name('users.home');
+    Route::get('/profile', [UserController::class, 'profile'])->name('users.profile');
+    Route::patch('/profile-update', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/password/update', [UserController::class, 'updatePassword'])->name('password.update');
 });
