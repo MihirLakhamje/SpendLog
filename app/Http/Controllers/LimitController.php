@@ -23,9 +23,15 @@ class LimitController extends Controller
         ]);
     }
 
-    public function edit()
+    public function edit(Limit $limit)
     {
-        return view('limits.edit');
+        if(!$limit){
+            abort(404);
+        }
+        return view('limits.edit', [
+            'categories' => Category::all(),
+            'limit' => $limit
+        ]);
     }   
 
     public function store(Request $request)
@@ -42,5 +48,28 @@ class LimitController extends Controller
             'limit_amount' => $request->limit_amount,
         ]);
         return redirect()->route('limits.index')->with('success', 'Limit set successfully');
+    }
+
+    public function update(Request $request, Limit $limit)
+    {
+        if (!$limit) {
+            abort(404);
+        }
+        $request->validate([
+            'category' => ['required', 'string'],
+            'limit_amount' => ['required', 'numeric'],
+        ]);
+
+        $limit->update([
+            'category_id' => $request->category,
+            'limit_amount' => $request->limit_amount,
+        ]);
+        return redirect()->route('limits.index')->with('success', 'Limit updated successfully');
+    }
+
+    public function destroy(Limit $limit)
+    {
+        $limit->delete();
+        return redirect()->route('limits.index')->with('success', 'Limit deleted successfully');
     }
 }
