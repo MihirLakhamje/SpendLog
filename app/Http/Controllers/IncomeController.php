@@ -46,4 +46,23 @@ class IncomeController extends Controller
 
         return redirect()->route('incomes.index')->with('success', 'Income added successfully');
     }
+
+    public function update(Request $request, Income $income)
+    {
+        $requestDate = Carbon::parse($request->income_date)->format('Y-m-d');
+        $request->validate([
+            'income_amount' => ['required', 'numeric'],
+            'source' => ['required', 'string'],
+            'income_date' => ['required', 'date'],
+        ]);
+
+        $income->update([
+            'user_id' => Auth::id(),
+            'income_amount' => $request->income_amount,
+            'source' => $request->source,
+            'income_date' => $requestDate,
+        ]);
+
+        return redirect()->route('incomes.index')->with('success', 'Income updated successfully');
+    }
 }
