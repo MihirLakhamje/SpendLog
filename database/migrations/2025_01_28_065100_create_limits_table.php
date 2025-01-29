@@ -19,8 +19,6 @@ return new class extends Migration
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->string('limit_name')->nullable();
             $table->integer('limit_amount');
-            $table->date('start_date');
-            $table->date('end_date');
             $table->timestamps();
         });
     }

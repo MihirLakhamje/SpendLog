@@ -11,8 +11,6 @@ class Limit extends Model
         'category_id',
         'limit_name',
         'limit_amount',
-        'start_date',
-        'end_date',
     ];
 
     public function user()
