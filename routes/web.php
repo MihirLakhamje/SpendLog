@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\LimitController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SocialiteController;
@@ -31,4 +34,64 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('users.profile');
     Route::patch('/profile-update', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::post('/password/update', [UserController::class, 'updatePassword'])->name('password.update');
+
+    Route::prefix('incomes')->group(function () {
+        Route::get('/', [IncomeController::class, 'index'])
+        ->name('incomes.index');
+
+        Route::get('/create', [IncomeController::class, 'create'])
+        ->name('incomes.create');
+
+        Route::post('/store', [IncomeController::class, 'store'])
+        ->name('incomes.store');
+
+        Route::get('/{income}/edit', [IncomeController::class, 'edit'])
+        ->name('incomes.edit');
+
+        Route::patch('/{income}/update', [IncomeController::class, 'update'])
+        ->name('incomes.update');
+
+        Route::delete('/{income}/delete', [IncomeController::class, 'destroy'])
+        ->name('incomes.delete');
+    });
+
+    Route::prefix('expenses')->group(function () {
+        Route::get('/', [ExpenseController::class, 'index'])
+        ->name('expenses.index');
+
+        Route::get('/create', [ExpenseController::class, 'create'])
+        ->name('expenses.create');
+
+        Route::post('/store', [ExpenseController::class, 'store'])
+        ->name('expenses.store');
+
+        Route::get('/{expense}/edit', [ExpenseController::class, 'edit'])
+        ->name('expenses.edit');
+
+        Route::patch('/{expense}/update', [ExpenseController::class, 'update'])
+        ->name('expenses.update');
+
+        Route::delete('/{expense}/delete', [ExpenseController::class, 'destroy'])
+        ->name('expenses.delete');
+    });
+
+    Route::prefix('limits')->group(function () {
+        Route::get('/', [LimitController::class, 'index'])
+        ->name('limits.index');
+
+        Route::get('/create', [LimitController::class, 'create'])
+        ->name('limits.create');
+
+        Route::post('/store', [LimitController::class, 'store'])
+        ->name('limits.store');
+
+        Route::get('/{limit}/edit', [LimitController::class, 'edit'])
+        ->name('limits.edit');
+
+        Route::patch('/{limit}/update', [LimitController::class, 'update'])
+        ->name('limits.update');
+
+        Route::delete('/{limit}/delete', [LimitController::class, 'destroy'])
+        ->name('limits.delete');
+    });
 });
