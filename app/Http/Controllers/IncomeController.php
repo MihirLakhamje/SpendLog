@@ -25,6 +25,9 @@ class IncomeController extends Controller
 
     public function edit(Income $income)
     {
+        if (!$income){
+            abort(404);
+        }
         return view('incomes.edit', ['income' => $income]);
     }
 
@@ -49,6 +52,10 @@ class IncomeController extends Controller
 
     public function update(Request $request, Income $income)
     {
+        if (!$income){
+            abort(404);
+        }
+
         $requestDate = Carbon::parse($request->income_date)->format('Y-m-d');
         $request->validate([
             'income_amount' => ['required', 'numeric'],
@@ -64,5 +71,11 @@ class IncomeController extends Controller
         ]);
 
         return redirect()->route('incomes.index')->with('success', 'Income updated successfully');
+    }
+
+    public function destroy(Income $income)
+    {
+        $income->delete();
+        return redirect()->route('incomes.index')->with('success', 'Income deleted successfully');
     }
 }
