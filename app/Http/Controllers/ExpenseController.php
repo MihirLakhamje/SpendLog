@@ -21,14 +21,15 @@ class ExpenseController extends Controller
     {
         return view('expenses.create', [
             'categories' => [
-                'Food',
-                'Entertainment',
-                'Transport',
-                'Health',
-                'Clothing',
-                'Travel',
-                'Education',
-                'Miscellaneous'
+                'food',
+                'entertainment',
+                'transport',
+                'health',
+                'clothing',
+                'shopping',
+                'travel',
+                'education',
+                'miscellaneous'
             ]
         ]);
     }
