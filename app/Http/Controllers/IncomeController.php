@@ -4,18 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Income;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class IncomeController extends Controller
 {
     public function index()
     {
-        $incomes = Income::where('user_id', Auth::id())->simplePaginate(10);
-        dd($incomes);
-        // return view('incomes.index');
+        $incomes = Income::where('user_id', Auth::id())->orderBy('income_date', 'desc')->paginate(8);
+        // dd($incomes);
+        return view('incomes.index', ['incomes' => $incomes]);
     }
 
     public function create()
