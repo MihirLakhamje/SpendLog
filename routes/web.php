@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LimitController;
@@ -93,5 +94,25 @@ Route::middleware('auth')->group(function () {
 
         Route::delete('/{limit}/delete', [LimitController::class, 'destroy'])
         ->name('limits.delete');
+    });
+
+    Route::prefix('categories')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])
+        ->name('categories.index');
+
+        Route::get('/create', [CategoryController::class, 'create'])
+        ->name('categories.create');
+
+        Route::post('/store', [CategoryController::class, 'store'])
+        ->name('categories.store');
+
+        Route::get('/{category}/edit', [CategoryController::class, 'edit'])
+        ->name('categories.edit');
+
+        Route::patch('/{category}/update', [CategoryController::class, 'update'])
+        ->name('categories.update');
+
+        Route::delete('/{category}/delete', [CategoryController::class, 'destroy'])
+        ->name('categories.delete');
     });
 });
