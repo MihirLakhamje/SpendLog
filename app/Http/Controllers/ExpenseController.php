@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Expense;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,17 +19,7 @@ class ExpenseController extends Controller
     public function create()
     {
         return view('expenses.create', [
-            'categories' => [
-                'food',
-                'entertainment',
-                'transport',
-                'health',
-                'clothing',
-                'shopping',
-                'travel',
-                'education',
-                'miscellaneous'
-            ]
+            'categories' => Auth::user()->categories,
         ]);
     }
 
@@ -41,17 +30,7 @@ class ExpenseController extends Controller
         }
         return view('expenses.edit', [
             'expense' => $expense,
-            'categories' => [
-                'food',
-                'entertainment',
-                'transport',
-                'health',
-                'clothing',
-                'shopping',
-                'travel',
-                'education',
-                'miscellaneous'
-            ]
+            'categories' => Auth::user()->categories,
         ]);
     }
 
@@ -65,14 +44,10 @@ class ExpenseController extends Controller
             'expense_date' => ['required', 'date'],
         ]);
 
-        $category = Category::firstOrCreate([
-            'name' => $request->category,
-            'user_id' => Auth::id(),
-        ]);
 
         Expense::create([
             'user_id' => Auth::id(),
-            'category_id' => $category->id,
+            'category_id' => $request->category,
             'expense_amount' => $request->expense_amount,
             'description' => $request->description,
             'expense_date' => $requestDate,
@@ -94,14 +69,11 @@ class ExpenseController extends Controller
             'expense_date' => ['required', 'date'],
         ]);
 
-        $category = Category::firstOrCreate([
-            'name' => $request->category,
-            'user_id' => Auth::id(),
-        ]);
+
 
         $expense->update([
             'user_id' => Auth::id(),
-            'category_id' => $category->id,
+            'category_id' => $request->category,
             'expense_amount' => $request->expense_amount,
             'description' => $request->description,
             'expense_date' => $requestDate,
