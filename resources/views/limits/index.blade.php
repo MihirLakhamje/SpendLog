@@ -38,8 +38,16 @@
 				</td>
 				<td class="px-6 py-4">{{ $limit->category->name }} </td>
 				<td class="px-6 py-4">&#8377; {{ $limit->limit_amount }} </td>
-				<td class="px-6 py-4">{{ $limit->limit_usage() }} </td>
-				<td class="px-6 py-4 {{ $limit->limit_status()['color'] }} font-bold">{{ $limit->limit_status()['status'] }}</td>
+				<td class="px-6 py-4 flex items-center gap-2">{{ $limit->limit_usage() }}%</td>
+				<td class="px-6 py-4 font-bold">
+					@if ($limit->limit_usage() >= 100)
+						<span class="text-red-500">Exceeded</span>
+					@elseif ($limit->limit_usage() >= 80)
+						<span class="text-yellow-500">Will exceed</span>
+					@else
+						<span class="text-green-500">Within limit</span>
+					@endif
+				</td>
 				<td class="px-6 py-4">
 					<div class="flex space-x-2 items-center">
 						<x-link :typeoflink="'link'" href="{{ route('limits.edit', $limit->id) }}"

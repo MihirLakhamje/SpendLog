@@ -31,9 +31,9 @@ class Limit extends Model
     public function limit_usage()
     {
         if(($this->total_expenses() / $this->limit_amount * 100) > 100) {
-            return '100%';
+            return 100;
         }
-        return $this->total_expenses() / $this->limit_amount * 100 . '%';
+        return $this->total_expenses() / $this->limit_amount * 100;
     }
 
     public function limit_status()
