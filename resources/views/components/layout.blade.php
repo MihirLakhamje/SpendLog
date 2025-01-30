@@ -150,7 +150,7 @@
             <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                 <ul class="space-y-4 font-medium">
                     <li>
-                        <x-button.nav-link :active="request()->is('home')" :href="route('users.home')">
+                        <x-link href="/home" :active="request()->is('home')" :typeoflink="'nav-link'">
                             <x-slot:icon>
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -160,13 +160,12 @@
                                     <path
                                         d="M11 6.025a1 1 0 0 0-1.065-.998 8.5 8.5 0 1 0 9.038 9.039A1 1 0 0 0 17.975 13H11V6.025Z" />
                                 </svg>
-
                             </x-slot:icon>
-                            <x-slot:title>Home</x-slot:title>
-                        </x-button.nav-link>
+                            Home
+                        </x-link>
                     </li>
                     <li>
-                        <x-button.nav-link :active="request()->is('profile')" :href="route('users.profile')">
+                        <x-link href="/profile" :active="request()->is('profile')" title="profile" :typeoflink="'nav-link'">
                             <x-slot:icon>
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -176,11 +175,12 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </x-slot:icon>
-                            <x-slot:title>Profile</x-slot:title>
-                        </x-button.nav-link>
+                            Profile
+                        </x-link>
                     </li>
                     <li>
-                        <x-button.nav-link :active="request()->is('incomes')" :href="route('incomes.index')">
+                        <x-link href="/incomes" :active="request()->is('incomes') || request()->is('incomes/*')"
+                            title="Incomes" :typeoflink="'nav-link'">
                             <x-slot:icon>
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -193,13 +193,13 @@
                                         clip-rule="evenodd" />
                                     <path d="M10.5 14.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
                                 </svg>
-
                             </x-slot:icon>
-                            <x-slot:title>Incomes</x-slot:title>
-                        </x-button.nav-link>
+                            Incomes
+                        </x-link>
                     </li>
                     <li>
-                        <x-button.nav-link :active="request()->is('expenses')" :href="route('expenses.index')">
+                        <x-link href="/expenses" :active="request()->is('expenses') || request()->is('expenses/*')"
+                            title="Expenses" :typeoflink="'nav-link'">
                             <x-slot:icon>
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -212,11 +212,12 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </x-slot:icon>
-                            <x-slot:title>Expenses</x-slot:title>
-                        </x-button.nav-link>
+                            Expenses
+                        </x-link>
                     </li>
                     <li>
-                        <x-button.nav-link :active="request()->is('categories')" :href="route('categories.index')">
+                        <x-link href="/categories" :active="request()->is('categories') || request()->is('categories/*')"
+                            title="Categories" :typeoflink="'nav-link'">
                             <x-slot:icon>
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -225,13 +226,13 @@
                                         d="M3 6a2 2 0 0 1 2-2h5.532a2 2 0 0 1 1.536.72l1.9 2.28H3V6Zm0 3v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3Z"
                                         clip-rule="evenodd" />
                                 </svg>
-
                             </x-slot:icon>
-                            <x-slot:title>Categories</x-slot:title>
-                        </x-button.nav-link>
+                            Categories
+                        </x-link>
                     </li>
                     <li>
-                        <x-button.nav-link :active="request()->is('limits')" :href="route('limits.index')">
+                        <x-link href="/limits" :active="request()->is('limits') || request()->is('limits/*')"
+                            title="Limits" :typeoflink="'nav-link'">
                             <x-slot:icon>
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -240,10 +241,9 @@
                                         d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v5a1 1 0 1 0 2 0V8Zm-1 7a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H12Z"
                                         clip-rule="evenodd" />
                                 </svg>
-
                             </x-slot:icon>
-                            <x-slot:title>Expense Limits</x-slot:title>
-                        </x-button.nav-link>
+                            Expense Limits
+                        </x-link>
                     </li>
                 </ul>
             </div>
