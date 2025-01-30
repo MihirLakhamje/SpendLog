@@ -106,6 +106,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [CategoryController::class, 'store'])
         ->name('categories.store');
 
+        Route::post('/addcategory', [CategoryController::class, 'addcategory'])
+        ->name('categories.addcategory');
+
         Route::get('/{category}/edit', [CategoryController::class, 'edit'])
         ->name('categories.edit');
 

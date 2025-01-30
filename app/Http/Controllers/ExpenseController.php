@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Expense;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,9 +12,9 @@ class ExpenseController extends Controller
 {
     public function index()
     {
-        $expenses = Expense::where('user_id', Auth::id())->simplePaginate(10);
-        dd($expenses);
-        // return view('expenses.index');
+        $expenses = Expense::where('user_id', Auth::id())->orderBy('expense_date', 'desc')->Paginate(10);
+        // dd($expenses);
+        return view('expenses.index', ['expenses' => $expenses]);
     }
 
     public function create()
@@ -30,7 +31,7 @@ class ExpenseController extends Controller
         }
         return view('expenses.edit', [
             'expense' => $expense,
-            'categories' => Auth::user()->categories,
+            'categories' => Category::where('user_id', Auth::id())->latest()->get(),
         ]);
     }
 
@@ -40,7 +41,7 @@ class ExpenseController extends Controller
         $request->validate([
             'category' => ['required', 'string'],
             'expense_amount' => ['required', 'numeric'],
-            'description' => ['required', 'string'],
+            'title' => ['required', 'string'],
             'expense_date' => ['required', 'date'],
         ]);
 
@@ -49,7 +50,7 @@ class ExpenseController extends Controller
             'user_id' => Auth::id(),
             'category_id' => $request->category,
             'expense_amount' => $request->expense_amount,
-            'description' => $request->description,
+            'title' => $request->title,
             'expense_date' => $requestDate,
         ]);
 
@@ -65,7 +66,7 @@ class ExpenseController extends Controller
         $request->validate([
             'category' => ['required', 'string'],
             'expense_amount' => ['required', 'numeric'],
-            'description' => ['required', 'string'],
+            'title' => ['required', 'string'],
             'expense_date' => ['required', 'date'],
         ]);
 
@@ -75,7 +76,7 @@ class ExpenseController extends Controller
             'user_id' => Auth::id(),
             'category_id' => $request->category,
             'expense_amount' => $request->expense_amount,
-            'description' => $request->description,
+            'title' => $request->title,
             'expense_date' => $requestDate,
         ]);
         return redirect()->route('expenses.index')->with('success', 'Expense updated successfully');

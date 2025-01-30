@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->integer('expense_amount');
             $table->date('expense_date');
-            $table->string('description')->nullable();
+            $table->string('title');
             $table->timestamps();
         });
     }

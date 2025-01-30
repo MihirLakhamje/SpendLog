@@ -35,6 +35,22 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category created successfully');
     }
 
+    public function addcategory(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string'],
+        ]);
+
+        $category =Category::firstOrCreate([
+            'name' => $request->name,
+            'user_id' => Auth::id(),
+        ]);
+
+        return response()->json([
+            'category' => $category,
+        ]);
+    }
+
     public function edit(Category $category)
     {
         if (!$category) {
