@@ -11,9 +11,9 @@ class LimitController extends Controller
 {
     public function index()
     {
-        $limits = Limit::where('user_id', Auth::id())->simplePaginate(10);
-        dd($limits);
-        // return view('limits.index', ['limits' => $limits]);
+        $limits = Limit::where('user_id', Auth::id())->orderBy('created_at', 'desc')->paginate(8);
+        // dd($limits);
+        return view('limits.index', ['limits' => $limits]);
     }
 
     public function create()
