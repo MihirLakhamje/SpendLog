@@ -11,7 +11,39 @@ class UserController extends Controller
 {
     public function home()
     {
-        return view('users.home');
+        $user = User::find(Auth::id());
+        $expenses = $user->expenses()->sum('expense_amount');
+        $incomes = $user->incomes()->sum('income_amount');
+        $expenses_this_month = $user->expenses()
+            ->whereMonth('expense_date', now()->month)
+            ->whereYear('expense_date', now()->year)
+            ->sum('expense_amount');
+        $incomes_this_month = $user->incomes()
+            ->whereMonth('income_date', now()->month)
+            ->whereYear('income_date', now()->year)
+            ->sum('income_amount');
+
+        $savings = $incomes - $expenses;
+        $savings_this_month = $incomes_this_month - $expenses_this_month;
+        if($savings < 0) {
+            $savings = 0;
+        }
+        if($savings_this_month < 0) {
+            $savings_this_month = 0;
+        }
+        $exceedingLimitsCount = $user->limits->filter(function ($limit) {
+            return $limit->category->expenses->sum('expense_amount') >= ($limit->limit_amount * 0.8);
+        })->count();
+        // dd($savings);
+        return view('users.home', [
+            'expenses' => $expenses,
+            'this_month_expenses' => $expenses_this_month,
+            'incomes' => $incomes,
+            'this_month_incomes' => $incomes_this_month,
+            'savings' => $savings,
+            'this_month_savings' => $savings_this_month,
+            'exceedingLimitsCount' => $exceedingLimitsCount,
+        ]);
     }
 
     public function profile()
