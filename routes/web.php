@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile-update', [UserController::class, 'updateProfile'])->name('profile.update')->can('authenticated');
     Route::post('/password/update', [UserController::class, 'updatePassword'])->name('password.update')->can('authenticated');
     Route::get('/stats', [UserController::class, 'stats'])->name('users.stats')->can('authenticated');
+    Route::delete('/delete', [UserController::class, 'destroyUser'])->name('users.destroy')->can('authenticated');
 
     Route::prefix('incomes')->group(function () {
         Route::get('/', [IncomeController::class, 'index'])

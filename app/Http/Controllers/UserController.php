@@ -139,9 +139,9 @@ class UserController extends Controller
         try {
             $user = User::find(Auth::user()->id);
             $user->delete();
-            return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+            return redirect()->route('login')->with('success', 'User deleted successfully.');
         } catch (Exception $e) {
-            return redirect()->route('users.index')->with('error', 'Something went wrong.');
+            return redirect()->back()->with('error', 'Something went wrong.');
         }
     }
 }
