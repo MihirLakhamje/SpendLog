@@ -28,7 +28,7 @@
 			</x-slot:column>
 
 			@foreach ($categories as $category)
-				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
+				<tr>
 					<td class="px-6 py-4">{{ $category->name }} </td>
 					<td class="px-6 py-4">{{ $category->expenses->count() }} </td>
 					<td class="px-6 py-4 ">
@@ -58,6 +58,9 @@
 			@if($categories->isEmpty())
 				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
 					<td class="px-6 py-4">No category records found </td>
+					<td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
 				</tr>
 			@endif
 		</x-data-table>

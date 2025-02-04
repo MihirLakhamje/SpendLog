@@ -73,7 +73,7 @@
             class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             <form class="w-full max-w-xl flex flex-col gap-4" action="#">
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">Delete account</h3>
-                <p>Are you sure you want to delete your account? These action cannot be undone and your progress will be
+                <p class="text-sm text-gray-700 dark:text-gray-400">Are you sure you want to delete your account? These action cannot be undone and your progress will be
                     lost.
                 </p>
 

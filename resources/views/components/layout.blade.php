@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark">
 
 <head>
     <meta charset="utf-8">
@@ -24,18 +24,39 @@
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
 </head>
 
 <body>
     @guest
         <nav
-            class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+            class="bg-white dark:bg-gray-800 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
             <div class="flex flex-wrap items-center justify-between p-4">
                 <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="{{ asset('/img/spendlog_logo.png') }}" loading="lazy" class="h-8" alt="Flowbite Logo">
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SpendLog</span>
                 </a>
-                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <div class="flex md:order-2 space-x-3 rtl:space-x-reverse">
+                    <button id="theme-toggle" type="button"
+                        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
 
 
                     <a href="{{ route('login') }}"
@@ -44,7 +65,7 @@
                 </div>
             </div>
         </nav>
-        <main {{ $attributes->merge(['class' => 'p-4 mt-14']) }}>
+        <main {{ $attributes->merge(['class' => 'p-4 mt-14 bg-white dark:bg-gray-700 min-h-screen']) }}>
             {{ $slot }}
         </main>
     @endguest
@@ -66,86 +87,98 @@
                             </svg>
                         </button>
                         <a href="/home" class="flex ms-2 md:me-24">
-                            <img src="{{ asset('/img/spendlog_logo.png') }}" loading="lazy" class="h-8 me-3" alt="FlowBite Logo" />
+                            <img src="{{ asset('/img/spendlog_logo.png') }}" loading="lazy" class="h-8 me-3"
+                                alt="FlowBite Logo" />
                             <span
                                 class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">SpendLog</span>
                         </a>
                     </div>
-                    <div class="flex items-center">
-                        <button id="dropdownAvatarButton" data-dropdown-toggle="dropdownAvatar"
-                            class="sm:hidden flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                            type="button">
-                            <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="{{ auth()->user()->google_avatar }}"
-                                alt="{{ Auth::user()->name }}">
-                        </button>
-                        <!-- Dropdown menu -->
-                        <div id="dropdownAvatar"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                <div class="font-medium ">{{ Auth::user()->name }}</div>
-                                <div class="truncate">{{ Auth::user()->email }}</div>
-                            </div>
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                aria-labelledby="dropdownInformdropdownAvatarButtonationButton">
-                                <li>
-                                    <a href="{{ route('users.profile') }}"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                                </li>
-                            </ul>
-                            <div class="py-2">
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <button type="submit"
-                                        class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</button>
-                                </form>
-                            </div>
-                        </div>
-
-
-                        <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
-                            class="sm:flex hidden items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
-                            type="button">
-                            <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 me-2 rounded-full" src="{{ auth()->user()->google_avatar }}"
-                                alt="{{ Auth::user()->name }}">
-                            <span class="hidden md:block">{{ Auth::user()->name }}</span>
-                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 1 4 4 4-4" />
+                    <div class="flex items-center gap-2">
+                        <button id="theme-toggle" type="button"
+                            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2">
+                            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                    fill-rule="evenodd" clip-rule="evenodd"></path>
                             </svg>
                         </button>
-                        <!-- Dropdown menu -->
-                        <div id="dropdownAvatarName"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                <div class="font-medium " title="{{ Auth::user()->name }}">{{ Auth::user()->name }}</div>
-                                <div class="truncate font-thin text-xs" title="{{ Auth::user()->email }}">
-                                    {{ Auth::user()->email }}
+
+                        <div class="flex items-center ">
+                            <button id="dropdownAvatarButton" data-dropdown-toggle="dropdownAvatar"
+                                class="sm:hidden flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                type="button">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-8 h-8 rounded-full" src="{{ auth()->user()->google_avatar }}"
+                                    alt="{{ Auth::user()->name }}">
+                            </button>
+                            <!-- Dropdown menu -->
+                            <div id="dropdownAvatar"
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                    <div class="font-medium ">{{ Auth::user()->name }}</div>
+                                    <div class="truncate">{{ Auth::user()->email }}</div>
+                                </div>
+                                <ul class=" text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownInformdropdownAvatarButtonationButton">
+                                    <li>
+                                        <a href="{{ route('users.profile') }}"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                                    </li>
+                                </ul>
+                                <div class="">
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <button type="submit"
+                                            class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 hover:rounded-b-lg dark:text-gray-200 dark:hover:text-white">Logout</button>
+                                    </form>
                                 </div>
                             </div>
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
-                                <li>
-                                    <a href="{{ route('users.profile') }}"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                                </li>
-                            </ul>
-                            <div class="py-2">
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <button type="submit"
-                                        class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</button>
-                                </form>
+
+                        </div>
+
+                        <div class="flex items-center ">
+                            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
+                                class="sm:flex hidden items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+                                type="button">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-8 h-8 me-2 rounded-full" src="{{ auth()->user()->google_avatar }}"
+                                    alt="{{ Auth::user()->name }}">
+                                <span class="hidden md:block">{{ Auth::user()->name }}</span>
+                                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+                            <!-- Dropdown menu -->
+                            <div id="dropdownAvatarName"
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                    <div class="font-medium " title="{{ Auth::user()->name }}">{{ Auth::user()->name }}
+                                    </div>
+                                    <div class="truncate font-thin text-xs" title="{{ Auth::user()->email }}">
+                                        {{ Auth::user()->email }}
+                                    </div>
+                                </div>
+                                <ul class="py-2text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                                    <li>
+                                        <a href="{{ route('users.profile') }}"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                                    </li>
+                                </ul>
+                                <div class="">
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <button type="submit"
+                                            class="block text-left w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 hover:rounded-b-lg dark:text-gray-200 dark:hover:text-white">Logout</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -258,16 +291,16 @@
             </div>
         </aside>
 
-        <div {{ $attributes->merge(['class' => 'p-4 mt-14 sm:ml-64 ml-0']) }}>
+        <div {{ $attributes->merge(['class' => 'p-4 mt-14 sm:ml-64 ml-0 bg-gray-50 dark:bg-gray-700 min-h-screen']) }}>
             <header>
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                     {{ $header ?? '' }}
                 </h2>
                 @if(isset($header))
                     <hr class="h-px my-2 bg-gray-100 border-0 dark:bg-gray-700">
                 @endif
             </header>
-            <main class="mt-2">
+            <main class="mt-2 ">
                 {{ $slot }}
             </main>
         </div>

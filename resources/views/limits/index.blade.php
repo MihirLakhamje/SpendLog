@@ -36,7 +36,7 @@
 			</x-slot:column>
 
 			@foreach ($limits as $limit)
-				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
+				<tr>
 					<td class="px-6 py-4 ">
 						{{ date('d-M-Y', strtotime($limit->created_at)) }}
 					</td>
@@ -76,6 +76,11 @@
 			@if($limits->isEmpty())
 				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
 					<td class="px-6 py-4">No limit records found </td>
+					<td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
 				</tr>
 			@endif
 		</x-data-table>

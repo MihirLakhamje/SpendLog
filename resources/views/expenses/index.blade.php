@@ -32,7 +32,7 @@
 			</x-slot:column>
 
 			@foreach ($expenses as $expense)
-				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
+				<tr>
 					<td class="px-6 py-4 ">
 						{{ date('d-M-Y', strtotime($expense->expense_date)) }}
 					</td>
@@ -61,8 +61,12 @@
 			@endforeach
 
 			@if($expenses->isEmpty())
-				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
+				<tr class="bg-white dark:bg-gray-800 dark:border-gray-700 text-nowrap">
 					<td class="px-6 py-4">No expense records found </td>
+					<td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
 				</tr>
 			@endif
 		</x-data-table>

@@ -31,7 +31,7 @@
             </x-slot:column>
 
             @foreach ($incomes as $income)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
+                <tr class="bg-white border-b text-nowrap">
                     <td class="px-6 py-4"> {{ $income->source }} </td>
                     <td class="px-6 py-4">&#8377; {{ $income->income_amount }} </td>
                     <td class="px-6 py-4 ">
@@ -59,8 +59,11 @@
             @endforeach
 
             @if($incomes->isEmpty())
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
+                <tr class="bg-white dark:bg-gray-800 text-nowrap">
                     <td class="px-6 py-4">No income records found </td>
+                    <td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
+                    <td class="px-6 py-4"> </td>
                 </tr>
             @endif
         </x-data-table>

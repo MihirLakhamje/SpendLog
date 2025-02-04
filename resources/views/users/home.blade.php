@@ -124,6 +124,10 @@
 			legend: {
 				show: true,
 				position: "bottom",
+				horizontalAlign: 'left',
+				labels: {
+					useSeriesColors: true
+				},
 			},
 			dataLabels: {
 				enabled: false,
@@ -176,7 +180,7 @@
 			},
 			fill: {
 				opacity: 1,
-			}
+			},
 		}
 
 		if (document.getElementById("bar-chart") && typeof ApexCharts !== 'undefined') {
