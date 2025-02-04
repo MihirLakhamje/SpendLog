@@ -30,93 +30,93 @@ Route::get('/google/redirect', [SocialiteController::class, 'googleLogin'])->nam
 Route::get('/google/callback', [SocialiteController::class, 'googleCallback'])->name('google.callback');
 
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
-    Route::get('/home', [UserController::class, 'home'])->name('users.home');
-    Route::get('/profile', [UserController::class, 'profile'])->name('users.profile');
-    Route::patch('/profile-update', [UserController::class, 'updateProfile'])->name('profile.update');
-    Route::post('/password/update', [UserController::class, 'updatePassword'])->name('password.update');
-    Route::get('/stats', [UserController::class, 'stats'])->name('users.stats');
+    Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->can('authenticated');
+    Route::get('/home', [UserController::class, 'home'])->name('users.home')->can('authenticated');
+    Route::get('/profile', [UserController::class, 'profile'])->name('users.profile')->can('authenticated');
+    Route::patch('/profile-update', [UserController::class, 'updateProfile'])->name('profile.update')->can('authenticated');
+    Route::post('/password/update', [UserController::class, 'updatePassword'])->name('password.update')->can('authenticated');
+    Route::get('/stats', [UserController::class, 'stats'])->name('users.stats')->can('authenticated');
 
     Route::prefix('incomes')->group(function () {
         Route::get('/', [IncomeController::class, 'index'])
-        ->name('incomes.index');
+        ->name('incomes.index')->can('authenticated');
 
         Route::get('/create', [IncomeController::class, 'create'])
-        ->name('incomes.create');
+        ->name('incomes.create')->can('authenticated');
 
         Route::post('/store', [IncomeController::class, 'store'])
-        ->name('incomes.store');
+        ->name('incomes.store')->can('authenticated');
 
         Route::get('/{income}/edit', [IncomeController::class, 'edit'])
-        ->name('incomes.edit');
+        ->name('incomes.edit')->can('authenticated');
 
         Route::patch('/{income}/update', [IncomeController::class, 'update'])
-        ->name('incomes.update');
+        ->name('incomes.update')->can('authenticated');
 
         Route::delete('/{income}/delete', [IncomeController::class, 'destroy'])
-        ->name('incomes.delete');
+        ->name('incomes.delete')->can('authenticated');
     });
 
     Route::prefix('expenses')->group(function () {
         Route::get('/', [ExpenseController::class, 'index'])
-        ->name('expenses.index');
+        ->name('expenses.index')->can('authenticated');
 
         Route::get('/create', [ExpenseController::class, 'create'])
-        ->name('expenses.create');
+        ->name('expenses.create')->can('authenticated');
 
         Route::post('/store', [ExpenseController::class, 'store'])
-        ->name('expenses.store');
+        ->name('expenses.store')->can('authenticated');
 
         Route::get('/{expense}/edit', [ExpenseController::class, 'edit'])
-        ->name('expenses.edit');
+        ->name('expenses.edit')->can('authenticated');
 
         Route::patch('/{expense}/update', [ExpenseController::class, 'update'])
-        ->name('expenses.update');
+        ->name('expenses.update')->can('authenticated');
 
         Route::delete('/{expense}/delete', [ExpenseController::class, 'destroy'])
-        ->name('expenses.delete');
+        ->name('expenses.delete')->can('authenticated');
     });
 
     Route::prefix('limits')->group(function () {
         Route::get('/', [LimitController::class, 'index'])
-        ->name('limits.index');
+        ->name('limits.index')->can('authenticated');
 
         Route::get('/create', [LimitController::class, 'create'])
-        ->name('limits.create');
+        ->name('limits.create')->can('authenticated');
 
         Route::post('/store', [LimitController::class, 'store'])
-        ->name('limits.store');
+        ->name('limits.store')->can('authenticated');
 
         Route::get('/{limit}/edit', [LimitController::class, 'edit'])
-        ->name('limits.edit');
+        ->name('limits.edit')->can('authenticated');
 
         Route::patch('/{limit}/update', [LimitController::class, 'update'])
-        ->name('limits.update');
+        ->name('limits.update')->can('authenticated');
 
         Route::delete('/{limit}/delete', [LimitController::class, 'destroy'])
-        ->name('limits.delete');
+        ->name('limits.delete')->can('authenticated');
     });
 
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])
-        ->name('categories.index');
+        ->name('categories.index')->can('authenticated');
 
         Route::get('/create', [CategoryController::class, 'create'])
-        ->name('categories.create');
+        ->name('categories.create')->can('authenticated');
 
         Route::post('/store', [CategoryController::class, 'store'])
-        ->name('categories.store');
+        ->name('categories.store')->can('authenticated');
 
         Route::post('/addcategory', [CategoryController::class, 'addcategory'])
-        ->name('categories.addcategory');
+        ->name('categories.addcategory')->can('authenticated');
 
         Route::get('/{category}/edit', [CategoryController::class, 'edit'])
-        ->name('categories.edit');
+        ->name('categories.edit')->can('authenticated');
 
         Route::patch('/{category}/update', [CategoryController::class, 'update'])
-        ->name('categories.update');
+        ->name('categories.update')->can('authenticated');
 
         Route::delete('/{category}/delete', [CategoryController::class, 'destroy'])
-        ->name('categories.delete');
+        ->name('categories.delete')->can('authenticated');
     });
 });
