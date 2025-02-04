@@ -1,5 +1,6 @@
 <x-layout>
     <x-slot:title>Add limit | SpentLog</x-slot:title>
+    <x-slot:metaDescription>Define a spending limit for your categories to stay within budget.</x-slot:metaDescription>
 
     <x-slot:header>
         Set limit on category
@@ -10,11 +11,11 @@
 
         <div class="mb-4">
             <span class="text-red-500">* </span><span class="text-gray-500"><i>
-                By setting limit on a category, you will be notified if the limit is exceeded </span>
-
-            </i>
+                    By setting limit on a category, you will be notified if the limit is exceeded
+                </i>
+            </span>
         </div>
-        
+
         <form class="w-full max-w-lg flex flex-col gap-4" action="{{ route('limits.store') }}" method="POST">
             @csrf
 

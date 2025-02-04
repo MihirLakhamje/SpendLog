@@ -1,4 +1,5 @@
 <x-layout>
+  <x-slot:metaDescription>Log in to SpendLog and start managing your finances today.</x-slot:metaDescription>
 
   <form class="max-w-sm mx-auto mt-24" action="{{ route('login.store') }}" method="POST">
     <h1 class="text-2xl font-bold mb-5">Welcome, back!</h1>
@@ -19,11 +20,12 @@
     </div>
     <div class="mb-5 flex justify-between">
       <span><a href="#" class="text-sm text-gray-700 hover:underline dark:text-gray-400">Forgot password?</a></span>
-      <span><a href="{{ route('register') }}" class="text-sm text-gray-700 hover:underline dark:text-gray-400">Don't have an account?</a></span>
+      <span><a href="{{ route('register') }}" class="text-sm text-gray-700 hover:underline dark:text-gray-400">Don't
+          have an account?</a></span>
     </div>
     <button type="submit"
       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continue</button>
-      <hr class="w-64 h-0.5 mx-auto  bg-gray-300 border-0 rounded-sm my-2 dark:bg-gray-700">
+    <hr class="w-64 h-0.5 mx-auto  bg-gray-300 border-0 rounded-sm my-2 dark:bg-gray-700">
     <a href="{{ route('login.google') }}"
       class="w-full  text-[#4285F4] hover:text-white border border-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  justify-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
       <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"

@@ -1,5 +1,7 @@
 <x-layout>
     <x-slot:title>Income | SpentLog</x-slot:title>
+    <x-slot:metaDescription>View and manage all your income sources in SpendLog.</x-slot:metaDescription>
+
     <x-slot:header>Incomes</x-slot:header>
 
     <x-data-table>

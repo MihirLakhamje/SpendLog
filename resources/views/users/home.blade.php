@@ -1,6 +1,8 @@
 <x-layout>
 
 	<x-slot:title>Home | SpentLog</x-slot:title>
+	<x-slot:metaDescription>Get an overview of your spending, income, and budget in SpendLog.</x-slot:metaDescription>
+
 	<x-slot:header>Home</x-slot:header>
 
 	<div class="grid grid-cols-2  sm:grid-cols-4 gap-4">
@@ -34,7 +36,8 @@
 	</div>
 
 
-	<div class="mt-4 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-6">
+	<div
+		class="mt-4 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-6">
 		<div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
 			<dl>
 				<dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Yearly savings</dt>

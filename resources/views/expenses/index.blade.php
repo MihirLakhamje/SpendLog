@@ -1,5 +1,7 @@
 <x-layout>
 	<x-slot:title>Expenses | SpentLog</x-slot:title>
+	<x-slot:metaDescription>Track and manage your daily expenses efficiently in SpendLog.</x-slot:metaDescription>
+
 	<x-slot:header>Expenses</x-slot:header>
 
 	<x-data-table>

@@ -1,5 +1,8 @@
 <x-layout>
 	<x-slot:title>Limits | SpentLog</x-slot:title>
+	<x-slot:metaDescription>Set and monitor spending limits for better budget control on
+		SpendLog.</x-slot:metaDescription>
+
 	<x-slot:header>Limits for category</x-slot:header>
 
 	<x-data-table>

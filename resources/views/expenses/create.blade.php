@@ -1,5 +1,6 @@
 <x-layout>
     <x-slot:title>Add expense | SpentLog</x-slot:title>
+    <x-slot:metaDescription>Add a new expense to track your spending habits on SpendLog.</x-slot:metaDescription>
 
     <div class="flex flex-col gap-4 mt-4">
 

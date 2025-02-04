@@ -7,6 +7,11 @@
 
     <title>{{ $title ?? 'SpendLog' }}</title>
 
+    <meta name="description"
+        content="{{ $metaDescription ?? 'SpendLog helps you track expenses and manage your budget efficiently.' }}">
+
+    <meta name="author" content="Mihir Lakhamje">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -15,6 +20,9 @@
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
@@ -23,8 +31,8 @@
         <nav
             class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
             <div class="flex flex-wrap items-center justify-between p-4">
-                <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo">
+                <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{{ asset('/img/spendlog_logo.png') }}" loading="lazy" class="h-8" alt="Flowbite Logo">
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SpendLog</span>
                 </a>
                 <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -57,8 +65,8 @@
                                 </path>
                             </svg>
                         </button>
-                        <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
+                        <a href="/home" class="flex ms-2 md:me-24">
+                            <img src="{{ asset('/img/spendlog_logo.png') }}" loading="lazy" class="h-8 me-3" alt="FlowBite Logo" />
                             <span
                                 class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">SpendLog</span>
                         </a>
@@ -232,8 +240,8 @@
                         </x-link>
                     </li>
                     <li>
-                        <x-link href="/limits" :active="request()->is('limits') || request()->is('limits/*')"
-                            title="Limits" :typeoflink="'nav-link'">
+                        <x-link href="/limits" :active="request()->is('limits') || request()->is('limits/*')" title="Limits"
+                            :typeoflink="'nav-link'">
                             <x-slot:icon>
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"

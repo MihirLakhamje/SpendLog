@@ -1,4 +1,6 @@
 <x-layout>
+  <x-slot:metaDescription>Sign up for SpendLog and take control of your expenses and income.</x-slot:metaDescription>
+
   <form class="max-w-sm mx-auto mt-4" action="{{ route('register.store') }}" method="POST">
     <h1 class="text-2xl font-bold mb-5">Create an account</h1>
     @csrf
@@ -32,7 +34,8 @@
       <x-form.error name="password_confirmation" />
     </div>
     <div class="mb-5">
-      <span><a href="{{ route('login') }}" class="text-sm text-gray-700 hover:underline dark:text-gray-400">Already have an account?</a></span>
+      <span><a href="{{ route('login') }}" class="text-sm text-gray-700 hover:underline dark:text-gray-400">Already have
+          an account?</a></span>
     </div>
     <button type="submit"
       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continue</button>

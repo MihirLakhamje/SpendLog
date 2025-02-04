@@ -1,5 +1,7 @@
 <x-layout>
   <x-slot:title>Edit limit | SpentLog</x-slot:title>
+  <x-slot:metaDescription>Edit and update your limit details easily in SpendLog.</x-slot:metaDescription>
+
   <x-slot:header>
     Set limit on category
   </x-slot:header>

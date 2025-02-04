@@ -1,5 +1,6 @@
 <x-layout>
     <x-slot:title>Edit income | SpentLog</x-slot:title>
+    <x-slot:metaDescription>Edit and update your income details easily in SpendLog.</x-slot:metaDescription>
     <x-slot:header>
         Edit income
     </x-slot:header>
@@ -43,12 +44,14 @@
             <div class="flex justify-between gap-4">
                 <button type="submit"
                     class="flex self-start text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
-                </div>
-            </form>
-            <form class="mt-4" action="{{ route('incomes.delete', $income->id) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete income</button>
-            </form>
+            </div>
+        </form>
+        <form class="mt-4" action="{{ route('incomes.delete', $income->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete
+                income</button>
+        </form>
     </div>
 </x-layout>
