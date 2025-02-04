@@ -61,7 +61,7 @@
 
 		@if($expenses->isEmpty())
 			<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-nowrap">
-				<td class="px-6 py-4">No income records found </td>
+				<td class="px-6 py-4">No expense records found </td>
 			</tr>
 		@endif
 	</x-data-table>
