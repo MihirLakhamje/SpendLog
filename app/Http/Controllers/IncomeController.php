@@ -33,7 +33,7 @@ class IncomeController extends Controller
     {
         $requestDate = Carbon::parse($request->income_date)->format('Y-m-d');
         $request->validate([
-            'income_amount' => ['required', 'numeric'],
+            'income_amount' => ['required', 'numeric', 'min:1'],
             'source' => ['required', 'string'],
             'income_date' => ['required', 'date'],
         ]);
@@ -56,7 +56,7 @@ class IncomeController extends Controller
 
         $requestDate = Carbon::parse($request->income_date)->format('Y-m-d');
         $request->validate([
-            'income_amount' => ['required', 'numeric'],
+            'income_amount' => ['required', 'numeric', 'min:1'],
             'source' => ['required', 'string'],
             'income_date' => ['required', 'date'],
         ]);

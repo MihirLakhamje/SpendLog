@@ -40,7 +40,7 @@ class ExpenseController extends Controller
         $requestDate = Carbon::parse($request->expense_date)->format('Y-m-d');
         $request->validate([
             'category' => ['required', 'string'],
-            'expense_amount' => ['required', 'numeric'],
+            'expense_amount' => ['required', 'numeric', 'min:1'],
             'title' => ['required', 'string'],
             'expense_date' => ['required', 'date'],
         ]);
@@ -65,7 +65,7 @@ class ExpenseController extends Controller
         $requestDate = Carbon::parse($request->expense_date)->format('Y-m-d');
         $request->validate([
             'category' => ['required', 'string'],
-            'expense_amount' => ['required', 'numeric'],
+            'expense_amount' => ['required', 'numeric', 'min:1'],
             'title' => ['required', 'string'],
             'expense_date' => ['required', 'date'],
         ]);

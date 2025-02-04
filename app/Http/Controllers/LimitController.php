@@ -57,7 +57,7 @@ class LimitController extends Controller
         }
         $request->validate([
             'category' => ['required', 'string'],
-            'limit_amount' => ['required', 'numeric'],
+            'limit_amount' => ['required', 'numeric', 'min:1'],
         ]);
 
         $limit->update([
