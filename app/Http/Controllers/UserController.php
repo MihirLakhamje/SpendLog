@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,10 @@ class UserController extends Controller
 
         $savings = $incomes - $expenses;
         $savings_this_month = $incomes_this_month - $expenses_this_month;
-        if($savings < 0) {
+        if ($savings < 0) {
             $savings = 0;
         }
-        if($savings_this_month < 0) {
+        if ($savings_this_month < 0) {
             $savings_this_month = 0;
         }
         $exceedingLimitsCount = $user->limits->filter(function ($limit) {
@@ -43,6 +44,42 @@ class UserController extends Controller
             'savings' => $savings,
             'this_month_savings' => $savings_this_month,
             'exceedingLimitsCount' => $exceedingLimitsCount,
+        ]);
+    }
+
+    public function stats()
+    {
+        $user = User::find(Auth::id());
+        $expenses = $user->expenses()
+            ->whereYear('expense_date', now()->year)
+            ->get()
+            ->groupBy(function ($expense) {
+                return Carbon::parse($expense->expense_date)->format('n'); // Get numeric month (1-12)
+            })
+            ->map(fn($group) => $group->sum('expense_amount'));
+        
+        $incomes = $user->incomes()
+            ->whereYear('income_date', now()->year)
+            ->get()
+            ->groupBy(function ($income) {
+                return Carbon::parse($income->income_date)->format('n'); // Get numeric month (1-12)
+            })
+            ->map(fn($group) => $group->sum('income_amount'));
+        
+        $incomesByMonth = array_fill(1, 12, 0);
+        foreach ($incomes as $month => $total) {
+            $incomesByMonth[$month] = $total;
+        }
+
+        // Ensure all months are present
+        $expensesByMonth = array_fill(1, 12, 0);
+        foreach ($expenses as $month => $total) {
+            $expensesByMonth[$month] = $total;
+        }
+
+        return response()->json([
+            'expenses' => array_values($expensesByMonth),
+            'incomes' => array_values($incomesByMonth),
         ]);
     }
 
@@ -61,12 +98,12 @@ class UserController extends Controller
 
             $user = User::find(Auth::user()->id);
             $userEmail = User::where('email', $request->email)->first();
-            if($userEmail){
-                if($userEmail->id != Auth::user()->id){
+            if ($userEmail) {
+                if ($userEmail->id != Auth::user()->id) {
                     return redirect()->route('users.profile')->with('error', 'Email already exists.');
                 }
             }
-            if($user->google_id){
+            if ($user->google_id) {
                 $user->name = $request->name;
                 $user->save();
                 return redirect()->route('users.profile')->with('success', 'You have successfully updated your profile.');
@@ -75,7 +112,7 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->save();
             return redirect()->route('users.profile')->with('success', 'You have successfully updated your profile.');
-            
+
         } catch (Exception $e) {
             dd($e->getMessage());
         }

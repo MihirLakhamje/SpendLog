@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('users.profile');
     Route::patch('/profile-update', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::post('/password/update', [UserController::class, 'updatePassword'])->name('password.update');
+    Route::get('/stats', [UserController::class, 'stats'])->name('users.stats');
 
     Route::prefix('incomes')->group(function () {
         Route::get('/', [IncomeController::class, 'index'])
