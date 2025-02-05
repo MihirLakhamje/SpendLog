@@ -11,8 +11,8 @@
 			class="flex justify-between p-4 sm:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 			<div>
 				<p class="text-gray-600 dark:text-gray-400">Income</p>
-				<h2 class="text-3xl font-bold text-green-600">₹ {{ $this_month_incomes }}</h2>
-				<span class="text-xs text-gray-500">Overall: ₹ {{ $incomes }}</span>
+				<h2 class="text-3xl font-bold text-green-600">₹ {{ short_number_format($this_month_incomes) }}</h2>
+				<span class="text-xs text-gray-500">Overall: ₹ {{ short_number_format($incomes) }}</span>
 			</div>
 			<div>
 				<a href="{{ route('incomes.create') }}" title="Add Income"
@@ -33,8 +33,8 @@
 			class="flex justify-between p-4 sm:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 			<div>
 				<p class="text-gray-600 dark:text-gray-400">Expenses</p>
-				<h2 class="text-3xl font-bold text-red-600">₹ {{ $this_month_expenses }}</h2>
-				<span class="text-xs text-gray-500">Overall: ₹ {{ $expenses }}</span>
+				<h2 class="text-3xl font-bold text-red-600">₹ {{ short_number_format($this_month_expenses) }}</h2>
+				<span class="text-xs text-gray-500">Overall: ₹ {{ short_number_format($expenses) }}</span>
 			</div>
 
 			<div>
@@ -76,8 +76,8 @@
 		<!-- Savings Card -->
 		<div class="p-4 sm:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 				<p class="text-gray-600 dark:text-gray-400">Savings</p>
-				<h2 class="text-3xl font-bold text-blue-600">₹ {{ $this_month_savings ?? 0 }}</h2>
-				<span class="text-xs text-gray-500">Overall: ₹ {{ $savings ?? 0 }}</span>
+				<h2 class="text-3xl font-bold text-blue-600">₹ {{ short_number_format($this_month_savings) ?? 0 }}</h2>
+				<span class="text-xs text-gray-500">Overall: ₹ {{ short_number_format($savings) ?? 0 }}</span>
 		</div>
 	</div>
 
@@ -87,18 +87,18 @@
 		<div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
 			<dl>
 				<dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Yearly savings</dt>
-				<dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₹ {{ $savings ?? 0 }}</dd>
+				<dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₹ {{ short_number_format($savings) ?? 0 }}</dd>
 			</dl>
 		</div>
 
 		<div class="grid grid-cols-2 py-3">
 			<dl>
 				<dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Income</dt>
-				<dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">₹ {{ $incomes }}</dd>
+				<dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">₹ {{ short_number_format($incomes) }}</dd>
 			</dl>
 			<dl>
 				<dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
-				<dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">₹ {{ $expenses }}</dd>
+				<dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">₹ {{ short_number_format($expenses) }}</dd>
 			</dl>
 		</div>
 

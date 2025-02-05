@@ -33,7 +33,7 @@
             @foreach ($incomes as $income)
                 <tr class="bg-white border-b text-nowrap">
                     <td class="px-6 py-4"> {{ $income->source }} </td>
-                    <td class="px-6 py-4">&#8377; {{ $income->income_amount }} </td>
+                    <td class="px-6 py-4">&#8377; {{ short_number_format($income->income_amount) }} </td>
                     <td class="px-6 py-4 ">
                         {{ date('d-M-Y', strtotime($income->income_date)) }}
                     </td>

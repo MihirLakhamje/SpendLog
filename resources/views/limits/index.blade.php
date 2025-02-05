@@ -41,7 +41,7 @@
 						{{ date('d-M-Y', strtotime($limit->created_at)) }}
 					</td>
 					<td class="px-6 py-4">{{ $limit->category->name }} </td>
-					<td class="px-6 py-4">&#8377; {{ $limit->limit_amount }} </td>
+					<td class="px-6 py-4">&#8377; {{ short_number_format($limit->limit_amount) }} </td>
 					<td class="px-6 py-4 flex items-center gap-2">{{ $limit->limit_usage() }}%</td>
 					<td class="px-6 py-4 font-bold">
 						@if ($limit->limit_usage() >= 100)

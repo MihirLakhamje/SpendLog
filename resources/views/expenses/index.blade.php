@@ -38,7 +38,7 @@
 					</td>
 					<td class="px-6 py-4">{{ $expense->title }} </td>
 					<td class="px-6 py-4">{{ $expense->category->name ?? 'N/A' }} </td>
-					<td class="px-6 py-4">&#8377; {{ $expense->expense_amount }} </td>
+					<td class="px-6 py-4">&#8377; {{ short_number_format($expense->expense_amount) }} </td>
 					<td class="px-6 py-4">
 						<div class="flex space-x-2 items-center">
 							<x-link :typeoflink="'link'" href="{{ route('expenses.edit', $expense->id) }}"
