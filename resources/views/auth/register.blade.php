@@ -39,7 +39,7 @@
     </div>
     <button type="submit"
       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continue</button>
-    <hr class="w-64 h-0.5 mx-auto  bg-gray-300 border-0 rounded-sm my-2 dark:bg-gray-700">
+    <hr class="w-64 h-px mx-auto  bg-gray-400 border-0 rounded-sm my-2 dark:bg-gray-500">
     <a href="{{ route('login.google') }}"
       class="w-full text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center dark:focus:ring-[#4285F4]/55 me-2 mb-2 ">
       <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"

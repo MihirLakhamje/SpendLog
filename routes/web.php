@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LimitController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserController;
@@ -18,8 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
@@ -28,6 +28,12 @@ Route::post('/login', [SessionController::class, 'store'])->name('login.store');
 
 Route::get('/google/redirect', [SocialiteController::class, 'googleLogin'])->name('login.google');
 Route::get('/google/callback', [SocialiteController::class, 'googleCallback'])->name('google.callback');
+
+Route::get('forgot-password', [ForgotPasswordController::class, 'showForgotForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('update-password', [ResetPasswordController::class, 'resetPassword'])->name('password.change');
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->can('authenticated');
