@@ -35,7 +35,7 @@ Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLink'
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('update-password', [ResetPasswordController::class, 'resetPassword'])->name('password.change');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'throttle:50,1'])->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->can('authenticated');
     Route::get('/home', [UserController::class, 'home'])->name('users.home')->can('authenticated');
     Route::get('/profile', [UserController::class, 'profile'])->name('users.profile')->can('authenticated');
