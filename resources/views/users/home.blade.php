@@ -7,31 +7,77 @@
 
 	<div class="grid grid-cols-2  sm:grid-cols-4 gap-4">
 		<!-- Income Card -->
-		<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-			<p class="text-gray-600 dark:text-gray-400">Income</p>
-			<h2 class="text-3xl font-bold text-green-600">₹ {{ $this_month_incomes }}</h2>
-			<span class="text-xs text-gray-500">Overall: ₹ {{ $incomes }}</span>
+		<div
+			class="flex justify-between p-4 sm:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+			<div>
+				<p class="text-gray-600 dark:text-gray-400">Income</p>
+				<h2 class="text-3xl font-bold text-green-600">₹ {{ $this_month_incomes }}</h2>
+				<span class="text-xs text-gray-500">Overall: ₹ {{ $incomes }}</span>
+			</div>
+			<div>
+				<a href="{{ route('incomes.create') }}" title="Add Income"
+					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm p-1 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+					<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M5 12h14m-7 7V5" />
+					</svg>
+
+					<span class="sr-only">Icon description</span>
+				</a>
+			</div>
 		</div>
 
 		<!-- Expense Card -->
-		<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-			<p class="text-gray-600 dark:text-gray-400">Expenses</p>
-			<h2 class="text-3xl font-bold text-red-600">₹ {{ $this_month_expenses }}</h2>
-			<span class="text-xs text-gray-500">Overall: ₹ {{ $expenses }}</span>
-		</div>
+		<div
+			class="flex justify-between p-4 sm:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+			<div>
+				<p class="text-gray-600 dark:text-gray-400">Expenses</p>
+				<h2 class="text-3xl font-bold text-red-600">₹ {{ $this_month_expenses }}</h2>
+				<span class="text-xs text-gray-500">Overall: ₹ {{ $expenses }}</span>
+			</div>
 
-		<!-- Savings Card -->
-		<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-			<p class="text-gray-600 dark:text-gray-400">Savings</p>
-			<h2 class="text-3xl font-bold text-blue-600">₹ {{ $this_month_savings ?? 0 }}</h2>
-			<span class="text-xs text-gray-500">Overall: ₹ {{ $savings ?? 0 }}</span>
+			<div>
+				<a href="{{ route('expenses.create') }}" title="Add Expense"
+					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm p-1 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+					<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M5 12h14m-7 7V5" />
+					</svg>
+
+					<span class="sr-only">Icon description</span>
+				</a>
+			</div>
 		</div>
 
 		<!-- Exceeded Limits Card -->
-		<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-			<p class="text-gray-600 dark:text-gray-400">Exceeded</p>
-			<h2 class="text-3xl font-bold text-orange-600">{{ $exceedingLimitsCount ?? 0 }}</h2>
-			<span class="text-xs text-gray-500">Limit</span>
+		<div class="flex justify-between p-4 sm:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+			<div>
+				<p class="text-gray-600 dark:text-gray-400">Exceeded</p>
+				<h2 class="text-3xl font-bold text-orange-600">{{ $exceedingLimitsCount ?? 0 }}</h2>
+				<span class="text-xs text-gray-500">Limit</span>
+			</div>
+
+			<div>
+				<a href="{{ route('limits.create') }}" title="Add Limit"
+					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm p-1 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+					<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M5 12h14m-7 7V5" />
+					</svg>
+
+					<span class="sr-only">Icon description</span>
+				</a>
+			</div>
+		</div>
+
+		<!-- Savings Card -->
+		<div class="p-4 sm:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+				<p class="text-gray-600 dark:text-gray-400">Savings</p>
+				<h2 class="text-3xl font-bold text-blue-600">₹ {{ $this_month_savings ?? 0 }}</h2>
+				<span class="text-xs text-gray-500">Overall: ₹ {{ $savings ?? 0 }}</span>
 		</div>
 	</div>
 
