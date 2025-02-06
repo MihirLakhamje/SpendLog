@@ -1,66 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SpendLog (Expense Tracker)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
+SpendLog is a simple and efficient web application designed for tracking daily expenses and incomes. The application helps users manage their budget effectively by setting category-wise spending limits and visualizing financial data through charts.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Authentication**: Secure user authentication and authorization.
+- **Dashboard**: Provides an overview of income, expenses, savings, and budget limits.
+- **Expense Tracking**: Users can log their daily expenses categorized by type.
+- **Income Tracking**: Users can record their sources of income.
+- **Budget Limits**: Set spending limits on categories to track expenses efficiently.
+- **Reports & Charts**:
+  - Bar charts for financial overview.
+- **Recent Transactions**: Displays the latest income and expense transactions with pagination.
+- **Dark Mode Support**: UI adapts to user preferences.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technologies Used
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Laravel 11**: PHP framework for backend and routing.
+- **MySQL**: Database for storing user financial data.
+- **Blade**: Laravel templating engine for dynamic UI rendering.
+- **Tailwind CSS**: For modern and responsive frontend design.
+- **ApexCharts**: Used for visualizing financial trends with interactive charts.
+- **Vite**: For frontend asset compilation and performance optimization.
+- **NGINX**: Web server for serving the Laravel application.
+- **AWS EC2**: Cloud server for hosting the application.
 
-## Learning Laravel
+## Usage
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Users**:
+  - Log daily income and expenses.
+  - Set and track spending limits on different categories.
+  - View financial reports and insights.
+  - Get alerts for exceeded category limits.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Deployment Guide
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/MihirLakhamje/SpendLog.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd SpendLog
+   ```
+3. Install dependencies:
+   ```sh
+   composer install
+   npm install
+   ```
+4. Configure environment variables:
+   ```sh
+   cp .env.example .env
+   php artisan key:generate
+   ```
+5. Run migrations and seed the database:
+   ```sh
+   php artisan migrate --seed
+   ```
+6. Build frontend assets:
+   ```sh
+   npm run build
+   ```
+7. Start the application:
+   ```sh
+   php artisan serve
+   ```
 
-## Laravel Sponsors
+## Policies and Security
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Uses Laravel’s authentication and authorization mechanisms.
+- Data encryption ensures secure storage of user information.
 
-### Premium Partners
+## Future Enhancements
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- Export reports to CSV and PDF formats.
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
