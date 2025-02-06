@@ -17,7 +17,7 @@
 			<div>
 				<a href="{{ route('incomes.create') }}" title="Add Income"
 					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm p-px text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-					<svg class="w-6 h-6 text-white dark:text-gray-600" aria-hidden="true"
+					<svg class="w-6 h-6 text-white dark:text-gray-200" aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
 						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 							d="M5 12h14m-7 7V5" />
@@ -40,7 +40,7 @@
 			<div>
 				<a href="{{ route('expenses.create') }}" title="Add Expense"
 					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm p-px text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-					<svg class="w-6 h-6 text-white dark:text-gray-600" aria-hidden="true"
+					<svg class="w-6 h-6 text-white dark:text-gray-200" aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
 						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 							d="M5 12h14m-7 7V5" />
@@ -62,7 +62,7 @@
 			<div>
 				<a href="{{ route('limits.create') }}" title="Add Limit"
 					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm p-px text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-					<svg class="w-6 h-6 text-white dark:text-gray-600" aria-hidden="true"
+					<svg class="w-6 h-6 text-white dark:text-gray-200" aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
 						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 							d="M5 12h14m-7 7V5" />
